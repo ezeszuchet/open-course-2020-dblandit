@@ -20,3 +20,8 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, us
     .catch(err => {
         console.log(err);
     });
+
+
+    //siemtrica 1 llave, asimetrica 2 llaves public key (encriptar) and private key (desencriptar)
+    //mas complicada para desencriptar, pero es mas facil romper el algoritmo
+    //encriptacion, identifiacion
