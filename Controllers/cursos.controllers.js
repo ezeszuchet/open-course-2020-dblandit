@@ -2,14 +2,31 @@ const cursos = require('../models/cursos');
 
 const { validationResult } = require('express-validator');
 
-const getCursos = async function(req, res) {
+const getCursos = (req, res, next) => {
     const duracion = req.query.duracion;
     const año_de_dictado = req.query.anio_de_dictado;
 
-    //hacerlo por agreggate
-    cursos.
-    aggregate([{ $match: { duracion: duracion, año_de_dictado: año_de_dictado}}])
-
+    cursos.aggregate([{ $match: { duracion: duracion, año_de_dictado: año_de_dictado}}])
+            .then(cursos => {
+                if(cursos){
+                res.status(200).json({
+                    code: 0,
+                    message: cursos
+                });
+                }else{
+                    res.status(400).json({
+                        code: 0,
+                        message: "No se encontro ningun curso"
+                    }); 
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    code: 20,
+                    message: "Ocurrió un error con un módulo interno"
+                });
+            })
 };
 
 const postCursos = (req, res, next) => {
