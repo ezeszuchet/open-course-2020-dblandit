@@ -4,7 +4,8 @@ const clientes = new mongoose.Schema({
     nombre: { type: String },
     apellido: { type: String },
     DNI: { type: Number },
-    direccion: { type: Number }
-}, { _id: false });
+    direccion: { type: String },
+    cursoId: { type: Number }
+});
 
-module.exports = clientes;
+module.exports = mongoose.model('clientes', clientes);
