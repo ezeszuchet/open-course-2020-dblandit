@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const controller = require('./cursos.controller');
+const controller = require('../controllers/cursos.controller');
 
 router.get('/', controller.getCursos);
+router.post('/', controller.postCursos);
 
 module.exports = router;
