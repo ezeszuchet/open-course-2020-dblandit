@@ -5,7 +5,6 @@ const clientes = new mongoose.Schema({
     apellido: { type: String },
     DNI: { type: Number },
     direccion: { type: String },
-    cursoId: { type: Number }
 });
 
-module.exports = mongoose.model('clientes', clientes);
+module.exports = clientes;

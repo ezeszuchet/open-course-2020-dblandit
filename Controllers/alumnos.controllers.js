@@ -1,4 +1,4 @@
-const alumnos = require('../models/alumnos');
+const alumnos = require('./schemas/alumnos');
 
 const { validationResult } = require('express-validator');
 
@@ -12,6 +12,32 @@ const getAlumnos = (req, res, next) => {
     //Parsear el id a objectId
 };
 
+
+const getAlumnos = (req, res, next) => {
+    const id = req.params.cursos;
+
+    cursos.findById(id)
+        .then(() => {
+            cursos.aggregate([{
+                    $unwind: { $alumnos },
+                    $match: { duracion: duracion, año_de_dictado: año_de_dictado}
+                }])
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    code: 20,
+                    message: "Ocurrió un error con un módulo interno"
+                });
+            })        
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                code: 20,
+                message: "Ocurrió un error con un módulo interno"
+            });
+        })
+};
 
 const postCursos = (req, res, next) => {
     const errors = validationResult(req);
