@@ -14,7 +14,7 @@ Lista los cursos con los filtros ingresados
 
 `duracion=[number]`
 
-`anio=[integer]`
+`anio=[number]`
 
 
 ## Crear los cursos
